@@ -1,0 +1,16 @@
+for i = 0 to log2(p) - 1 do
+    next = rank * (2^i)
+    if next < p then
+        send_message = data1
+        recv_message = data2
+        MPI_Sendrecv(
+            sendbuf = &send_message, sendcount = 1, sendtype = MPI_INT,
+            dest = next, sendtag = 0,
+            recvbuf = &recv_message, recvcount = 1, recvtype = MPI_INT,
+            source = next, recvtag = 0,
+            comm = MPI_COMM_WORLD,
+            status = MPI_STATUS_IGNORE
+        )
+
+    end if
+end for
